@@ -9,6 +9,7 @@
         <module>biz-client</module>
         <module>biz-webflux</module>
         <module>biz-data</module>
+        <module>eureka-server</module>
     </modules>
 
 

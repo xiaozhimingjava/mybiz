@@ -1,4 +1,4 @@
-package com.acme.biz.web.client.feign;
+package com.acme.biz.api.openfeign;
 
 import com.acme.biz.api.ApiRequest;
 import com.acme.biz.api.ApiResponse;

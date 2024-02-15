@@ -10,6 +10,7 @@
         <module name="biz-api" />
         <module name="biz-client" />
         <module name="biz-data" />
+        <module name="eureka-server" />
         <module name="biz-web" />
       </profile>
     </annotationProcessing>

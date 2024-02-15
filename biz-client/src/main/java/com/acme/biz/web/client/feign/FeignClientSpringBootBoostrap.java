@@ -3,6 +3,7 @@ package com.acme.biz.web.client.feign;
 
 import com.acme.biz.api.interfaces.UserRegistrationService;
 import com.acme.biz.api.model.User;
+import com.acme.biz.api.openfeign.FeignConfiguration;
 import com.acme.biz.web.client.loadbalancer.UserServiceLoadBalancerConfiguration;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -10,7 +11,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @EnableAutoConfiguration

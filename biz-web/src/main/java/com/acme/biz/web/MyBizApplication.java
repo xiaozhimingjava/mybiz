@@ -9,6 +9,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Import;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -19,6 +20,7 @@ import java.util.List;
 @EnableConfigurationProperties
 @EnableDiscoveryClient // 激活服务发现客户端
 @ServletComponentScan
+@EnableScheduling
 //@Import(ResourceBulkheadHandlerInterceptor.class)
 public class MyBizApplication  implements WebMvcConfigurer {
 
