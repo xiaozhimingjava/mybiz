@@ -1,8 +1,6 @@
 package com.acme.biz.api.openfeign;
 
 
-import com.acme.biz.api.openfeign.ApiRequestRequestInterceptor;
-import com.acme.biz.api.openfeign.ApiResponseInterceptor;
 import feign.Logger;
 import feign.codec.Decoder;
 import feign.codec.Encoder;
@@ -10,7 +8,6 @@ import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
-import org.springframework.cloud.openfeign.support.HttpMessageConverterCustomizer;
 import org.springframework.cloud.openfeign.support.SpringDecoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +28,7 @@ public class FeignConfiguration {
 
 
     @Bean
-    public Decoder feignDecoder(ObjectProvider<HttpMessageConverterCustomizer> customizers) {
+    public Decoder feignDecoder(ObjectProvider<HttpMessageConverters> messageConverters) {
         return new ApiResponseInterceptor(new SpringDecoder(messageConverters));
     }
     @Bean

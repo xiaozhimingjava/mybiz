@@ -4,6 +4,8 @@
     <file url="file://$PROJECT_DIR$/biz-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/biz-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/biz-api/src/test/java/com/acme/biz/api/model/i18n/ResourceBundleUtilsTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/biz-client-ribbon/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/biz-client-ribbon/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/biz-client/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/biz-client/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/biz-data/src/main/java" charset="UTF-8" />

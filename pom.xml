@@ -10,6 +10,7 @@
         <module>biz-webflux</module>
         <module>biz-data</module>
         <module>eureka-server</module>
+        <module>biz-client-ribbon</module>
     </modules>
 
 

@@ -7,11 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="biz-webflux" />
+        <module name="biz-web" />
         <module name="biz-api" />
         <module name="biz-client" />
+        <module name="biz-client-ribbon" />
         <module name="biz-data" />
         <module name="eureka-server" />
-        <module name="biz-web" />
       </profile>
     </annotationProcessing>
   </component>

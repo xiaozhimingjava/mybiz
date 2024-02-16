@@ -7,7 +7,6 @@ import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.DefaultResponse;
 import org.springframework.cloud.client.loadbalancer.Request;
 import org.springframework.cloud.client.loadbalancer.Response;
-import org.springframework.cloud.loadbalancer.core.NoopServiceInstanceListSupplier;
 import org.springframework.cloud.loadbalancer.core.ReactorServiceInstanceLoadBalancer;
 import org.springframework.cloud.loadbalancer.core.ServiceInstanceListSupplier;
 import reactor.core.publisher.Flux;
@@ -36,11 +35,10 @@ public class CpuUsageLoadBalancer implements ReactorServiceInstanceLoadBalancer 
         this.serviceInstanceListSupplierProvider = serviceInstanceListSupplierProvider;
     }
 
-    @Override
     public Mono<Response<ServiceInstance>> choose(Request request) {
-        ServiceInstanceListSupplier supplier = serviceInstanceListSupplierProvider
-                .getIfAvailable(NoopServiceInstanceListSupplier::new);
-        List<ServiceInstance> serviceInstances = supplier.get(request).blockFirst();
+        ServiceInstanceListSupplier serviceInstanceListSupplier = serviceInstanceListSupplierProvider.getIfAvailable();
+        Flux<List<ServiceInstance>> flux = serviceInstanceListSupplier.get();
+        List<ServiceInstance> serviceInstances = flux.blockFirst();
         serviceInstances.forEach(serviceInstance -> {
             Map<String, String> metadata = serviceInstance.getMetadata();
             String cpuUsages = metadata.get("cpu-usage");
@@ -48,4 +46,18 @@ public class CpuUsageLoadBalancer implements ReactorServiceInstanceLoadBalancer 
         });
         return Mono.just(new DefaultResponse(serviceInstances.get(0)));
     }
+//
+//        /**
+//     * 兼容老版本
+//     *
+//     * @param request
+//     * @return
+//     */
+//    public Mono<org.springframework.cloud.client.loadbalancer.reactive.Response<ServiceInstance>> choose(
+//            org.springframework.cloud.client.loadbalancer.reactive.Request request) {
+//        ServiceInstanceListSupplier serviceInstanceListSupplier = serviceInstanceListSupplierProvider.getIfAvailable();
+//        Flux<List<ServiceInstance>> flux = serviceInstanceListSupplier.get();
+//        List<ServiceInstance> serviceInstances = flux.blockFirst();
+//        return Mono.justOrEmpty(new org.springframework.cloud.client.loadbalancer.reactive.DefaultResponse(serviceInstances.get(0)));
+//    }
 }
