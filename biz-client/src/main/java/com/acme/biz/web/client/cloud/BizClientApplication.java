@@ -1,6 +1,7 @@
 package com.acme.biz.web.client.cloud;
 
 import com.acme.biz.api.interfaces.UserRegistrationService;
+import com.acme.biz.api.micrometer.feign.FeignCallCounterMetrics;
 import com.acme.biz.web.client.cloud.controller.BizClientFeignController;
 import com.acme.biz.web.client.cloud.loadbalencer.CpuUsageBalancerConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
@@ -24,6 +26,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 @LoadBalancerClient(name = "user-service", configuration = CpuUsageBalancerConfiguration.class)
 @EnableScheduling
 @EnableFeignClients(clients = UserRegistrationService.class)
+@Import(FeignCallCounterMetrics.class)
 public class BizClientApplication {
 
     @Autowired

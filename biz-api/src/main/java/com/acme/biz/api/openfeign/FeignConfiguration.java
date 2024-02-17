@@ -1,6 +1,7 @@
 package com.acme.biz.api.openfeign;
 
 
+import com.acme.biz.api.micrometer.feign.FeignCallCounterMetrics;
 import feign.Logger;
 import feign.codec.Decoder;
 import feign.codec.Encoder;
@@ -19,20 +20,20 @@ public class FeignConfiguration {
     private ObjectFactory<HttpMessageConverters> messageConverters;
 
     @Bean
-    public Encoder feignEncoder(){
+    public Encoder feignEncoder() {
         return new ApiRequestRequestInterceptor();
     }
-
-
-
 
 
     @Bean
     public Decoder feignDecoder(ObjectProvider<HttpMessageConverters> messageConverters) {
         return new ApiResponseInterceptor(new SpringDecoder(messageConverters));
     }
+
     @Bean
-    public Logger.Level logger(){
+    public Logger.Level logger() {
         return Logger.Level.FULL;
     }
+
+
 }
