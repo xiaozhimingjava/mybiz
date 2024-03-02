@@ -1,5 +1,7 @@
 package com.acme.biz.web;
 
+import com.acme.biz.api.micrometer.MicrometerConfiguration;
+import com.acme.biz.api.micrometer.binder.servo.ServoMetrics;
 import com.acme.biz.web.mvc.interceptor.ResourceBulkheadHandlerInterceptor;
 import com.acme.biz.web.mvc.servlet.tomcat.MyTomcatWebServerFactoryCustomizer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,8 @@ import java.util.List;
 @ServletComponentScan
 @EnableScheduling
 //@Import(ResourceBulkheadHandlerInterceptor.class)
-public class MyBizApplication  implements WebMvcConfigurer {
+@Import({MicrometerConfiguration.class, ServoMetrics.class})
+public class MyBizApplication implements WebMvcConfigurer {
 
 //    @Autowired
 //    private List<HandlerInterceptor> handlerInterceptors;
